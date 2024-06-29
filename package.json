@@ -1,0 +1,31 @@
+{
+  "name": "atlas-web_graphql",
+  "version": "1.0.0",
+  "description": "GraphQL API server with Apollo, MongoDB, and a React frontend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "mocha --timeout 10000"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-express": "^2.25.2",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "mongoose": "^5.13.7",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.1.2",
+    "nodemon": "^2.0.12",
+    "sinon": "^11.1.2",
+    "request": "^2.88.2"
+  },
+  "engines": {
+    "node": "12.x"
+  }
+}
