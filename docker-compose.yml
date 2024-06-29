@@ -1,14 +1,15 @@
+version: '3'
 services:
   app:
-    entrypoint:
-    # - sleep
-    # - infinity
     build:
       context: .
       dockerfile: Dockerfile
-    init: true
     volumes:
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
-    - ./:/app
+      - ./:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - PERSONAL_DATA_DB_USERNAME=root
+      - PERSONAL_DATA_DB_PASSWORD=root
+      - PERSONAL_DATA_DB_HOST=localhost
+      - PERSONAL_DATA_DB_NAME=my_db
