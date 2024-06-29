@@ -61,6 +61,9 @@ RUN npm init -y \
     react-apollo \
     --save
 
+# Install nodemon as a global package
+RUN npm install nodemon
+
 # Copy package.json and package-lock.json for npm install
 COPY package.json package-lock.json ./
 
