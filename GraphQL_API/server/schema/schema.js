@@ -1,5 +1,3 @@
-// adding random comment to see if this works
-
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema } = graphql;
 
