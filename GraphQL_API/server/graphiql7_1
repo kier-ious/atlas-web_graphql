@@ -1,0 +1,8 @@
+mutation {
+  addProject(title: "New Project", weight: 2, description: "This is a new project description") {
+    id
+    title
+    weight
+    description
+  }
+}
