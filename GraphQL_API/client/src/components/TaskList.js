@@ -4,6 +4,15 @@ import TaskDetails from './TaskDetails';
 import { GET_TASKS_QUERY } from '../queries/queries';
 
 
+const GET_TASKS_QUERY = gql`
+  {
+    tasks {
+      id
+      title
+    }
+  }
+`;
+
 function displayTasks(data, setState) {
   if (data.loading) {
     return <div>Loading tasks...</div>;
