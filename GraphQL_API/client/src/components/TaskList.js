@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import TaskDetails from './TaskDetails';
+import { GET_TASKS_QUERY } from '../queries/queries';
 
-// GraphQL query to fetch tasks
-const GET_TASKS_QUERY = gql`
-  {
-    tasks {
-      id
-      title
-    }
-  }
-`;
 
 function displayTasks(data, setState) {
   if (data.loading) {

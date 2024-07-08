@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_PROJECTS_QUERY, GET_TASKS_QUERY, ADD_TASK_MUTATION } from '../queries/queries';
 
-// GraphQL query to fetch projects
-const GET_PROJECTS_QUERY = gql`
-  {
-    projects {
-      id
-      title
-    }
-  }
-`;
 
 function displayProjects(data) {
   if (data.loading) {
@@ -27,6 +19,10 @@ function displayProjects(data) {
 
 function AddTask() {
   const { loading, error, data } = useQuery(GET_PROJECTS_QUERY);
+  const [addTask] = useMutation(ADD_TASK_MUTATION, {
+    refetchQueries: [{ query: GET_TASKS_QUERY }]
+  });
+
   const [inputs, setInputs] = useState({
     title: '',
     weight: 1,
@@ -44,8 +40,30 @@ function AddTask() {
     setInputs(newInputs);
   };
 
+  const submitForm = (e) => {
+    e.preventDefault();
+    addTask({
+      variables: {
+        title: inputs.title,
+        weight: inputs.weight,
+        description: inputs.description,
+        projectId: inputs.projectId
+      }
+    }).then(() => {
+
+      setInputs({
+        title: '',
+        weight: 1,
+        description: '',
+        projectId: ''
+      });
+    }).catch(error => {
+      console.error('Error adding task:', error);
+    });
+  };
+
   return (
-    <form className="task" id="add-task" /*onSubmit={...}*/>
+    <form className="task" id="add-task" onSubmit={submitForm}>
       <div className="field">
         <label>Task title:</label>
         <input
